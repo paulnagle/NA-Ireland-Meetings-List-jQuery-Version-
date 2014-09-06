@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>Multi-page template</title>
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link rel="stylesheet" href="css/MarkerCluster.css" />
+	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+	
+<link rel="stylesheet" href="css/paul-theme.min.css" />
+<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="js/leaflet.markercluster.js"></script>
+	<script src="js/Leaflet.MakiMarkers.js"></script>
+	<script src="js/spin.min.js"></script>
+	<script src="js/leaflet.spin.js"></script>	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+	<script src="js/main.js"></script>	
+</head>
+
+<body>
+
+<!-- Start of first page -->
+<div data-role="page" id="one" >
+	<div data-role="header" data-add-back-btn="true" id ="one_header">
+		<h1>First Page</h1>
+	</div><!-- /header -->
+	<div div role="main" class="ui-content">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#search-map" class="ui-btn ui-shadow ui-corner-all">Search</a></li> 
+			<li><a href="#settings"   class="ui-btn ui-shadow ui-corner-all">Settings</a></li> 
+			<li><a href="#contact"   class="ui-btn ui-shadow ui-corner-all">Contact Us</a></li> 
+		</ul> 
+	</div><!-- /content -->
+</div><!-- /first page-->
+
+<!-- Start of search-map page -->
+<div data-role="page" id="search-map" >
+	<div data-role="header" id="map-header" data-add-back-btn="true">
+		<h1>Search Results</h1>
+	</div><!-- /header -->
+	<div role="main" class="ui-content">
+		<div id="map_canvas" style="width: 100%"></div>
+		<div id="list_canvas" class="ui-content ui-content-list"  >
+			<div id="list-results" >
+			</div>
+		</div>
+	</div><!-- /content -->
+	<div data-role="footer" id="map-footer" data-position="fixed">
+		<div class="segmented-control ui-bar-d"  style="text-align:center;">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <input name="switch" id="map-switch" type="radio" checked="true" >
+                <label for="map-switch">Map</label>			
+                <input name="switch" id="list-switch" type="radio">
+                <label for="list-switch">List</label>
+            </fieldset>
+		</div>
+	</div><!-- /footer -->	
+</div><!-- /search-map -->
+
+<!-- Start of settings page -->
+<div data-role="page" id="settings" >
+	<div data-role="header" data-add-back-btn="true">
+		<h1>Settings</h1>
+	</div><!-- /header -->
+	<div role="main" class="ui-content">
+		<input type="button" id="GPSButton" value="Go to current location">
+		<label for="textinput-s">Move search center:</label>
+		<div data-role="controlgroup" data-type="horizontal">
+			<input name="textinput-s" id="textinput-s" placeholder="Enter address here" value="" data-wrapper-class="controlgroup-textinput ui-btn" type="search">
+		    <button name="geoLocateBtn" id="geoLocateBtn">Update</button>
+		</div>
+		<label for="slider-s">Search radius in kms:</label>
+		<input type="range" name="slider-s" id="slider-s" value="25" min="1" max="150" data-highlight="true">
+	</div><!-- /content -->
+</div><!-- /settings -->
+
+<!-- Start of Contact page -->
+<div data-role="page" id="contact" >
+	<div data-role="header" data-add-back-btn="true">
+		<h1>Contact Us</h1>
+	</div><!-- /header -->
+	<div role="main" class="ui-content">		
+		<h1> Put the many many ways to contact us here</h1>
+	</div><!-- /content -->
+</div><!-- /settings -->
+
+</body>
+
+</html>
