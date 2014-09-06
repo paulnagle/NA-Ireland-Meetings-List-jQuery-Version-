@@ -4,7 +4,7 @@
 <head>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<title>Multi-page template</title>
+	<title>NA Ireland Meetings List</title>
 
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<link rel="stylesheet" href="css/MarkerCluster.css" />
@@ -30,11 +30,11 @@
 <!-- Start of first page -->
 <div data-role="page" id="one" >
 	<div data-role="header" data-add-back-btn="true" id ="one_header">
-		<h1>First Page</h1>
+		<h1>NA Ireland</h1>
 	</div><!-- /header -->
 	<div div role="main" class="ui-content">
 		<ul data-role="listview" data-inset="true">
-			<li><a href="#search-map" class="ui-btn ui-shadow ui-corner-all">Search</a></li> 
+			<li><a href="#search-map" class="ui-btn ui-shadow ui-corner-all">Search for Meetings</a></li> 
 			<li><a href="#settings"   class="ui-btn ui-shadow ui-corner-all">Settings</a></li> 
 			<li><a href="#contact"   class="ui-btn ui-shadow ui-corner-all">Contact Us</a></li> 
 		</ul> 
@@ -46,8 +46,8 @@
 	<div data-role="header" id="map-header" data-add-back-btn="true">
 		<h1>Search Results</h1>
 	</div><!-- /header -->
-	<div role="main" class="ui-content">
-		<div id="map_canvas" style="width: 100%"></div>
+	<div role="main" class="ui-content" style="padding: 0px !important">
+		<div id="map_canvas" style="width: 100% !important"></div>
 		<div id="list_canvas" class="ui-content ui-content-list"  >
 			<div id="list-results" >
 			</div>
@@ -71,12 +71,14 @@
 		<h1>Settings</h1>
 	</div><!-- /header -->
 	<div role="main" class="ui-content">
-		<input type="button" id="GPSButton" value="Go to current location">
+		<input type="button" id="GPSButton" value="Reset to current location">
+		
 		<label for="textinput-s">Move search center:</label>
 		<div data-role="controlgroup" data-type="horizontal">
-			<input name="textinput-s" id="textinput-s" placeholder="Enter address here" value="" data-wrapper-class="controlgroup-textinput ui-btn" type="search">
-		    <button name="geoLocateBtn" id="geoLocateBtn">Update</button>
+			<input name="textinput-s" id="textinput-s" placeholder="Enter address here" value="" data-mini="true" data-wrapper-class="controlgroup-textinput ui-btn" type="search">
+		    <button name="geoLocateBtn" data-wrapper-class="controlgroup-textinput ui-btn" id="geoLocateBtn">Update</button>
 		</div>
+		
 		<label for="slider-s">Search radius in kms:</label>
 		<input type="range" name="slider-s" id="slider-s" value="25" min="1" max="150" data-highlight="true">
 	</div><!-- /content -->
@@ -91,6 +93,16 @@
 		<h1> Put the many many ways to contact us here</h1>
 	</div><!-- /content -->
 </div><!-- /settings -->
+
+<div data-role="dialog" id="dialog">
+ <div data-role="header" data-theme="a">
+  <h1>Success</h1>
+ </div>
+ <div data-role="content">
+  <p>Location has been updated</p>
+ </div>
+</div>
+
 
 </body>
 

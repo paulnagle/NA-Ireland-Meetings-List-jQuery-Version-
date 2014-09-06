@@ -78,8 +78,6 @@ function deleteMap() {
     $mapSwitch.on( "click", function( e ){
         $map_div.show();
         $list_div.hide();
-		map.invalidateSize(false);
-		fillMap();
     });
     $listSwitch.on( "click", function( e ){
         $list_div.show();
@@ -199,7 +197,9 @@ function getCurrentGPSLocation() {
 	function setLocation(location) {
 	    console.log("****GPS location found");
 		myLatLng = L.latLng(location.coords.latitude, location.coords.longitude);
-		fillMap();
+//		fillMap();
+//		$.mobile.changePage('#dialog', {'role': 'dialog'});
+
 	}
 	
 	function noLocation() {
@@ -237,7 +237,7 @@ function renderGeocode(response) {
 		console.log("Location updated at " + hours + ":" + minutes + ":" + seconds);
 //		document.getElementById("geoLocationLegend").innerHTML = "Location updated at " + hours + ":" + minutes + ":" + seconds;	
 		myLatLng = L.latLng(geoCodeResult.latLng.lat, geoCodeResult.latLng.lng);
-		hasSearchChanged = "true";
+		$.mobile.changePage('#dialog', {'role': 'dialog'});
 	} else {
 		console.log("Location not found");
 	}
@@ -267,18 +267,18 @@ function runSearch() {
 		$("#list-results").empty();
 		markerClusterer = new L.markerClusterGroup({showCoverageOnHover: false, 
 													removeOutsideVisibleBounds: false});	
-		
-		var sunExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Sunday</h4>";		
-		var monExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Monday</h4>";
-		var tueExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Tuesday</h4>";
-		var wedExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Wednesday</h4>";
-		var thuExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Thursday</h4>";
-		var friExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Friday</h4>";
-		var satExpandLi = "<ul><div data-role='collapsible' data-autodividers='true' ><h4>Saturday</h4>";
+		var sunCount =0, monCount =0, tueCount = 0, wedCount = 0, thuCount = 0, friCount = 0, satCount = 0;
+		var sunExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='sunHead'>Sunday</h4>";		
+		var monExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='monHead'>Monday</h4>";
+		var tueExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='tueHead'>Tuesday</h4>";
+		var wedExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='wedHead'>Wednesday</h4>";
+		var thuExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='thuHead'>Thursday</h4>";
+		var friExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='friHead'>Friday</h4>";
+		var satExpandLi = "<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' ><h4 id='satHead'>Saturday</h4>";
 													
 		$.each( data, function( key, val) {
 
-			markerContent = "<li><h4>" + val.meeting_name + "</h4>";
+			markerContent = "<li style='list-style-type: none !important'><h4>" + val.meeting_name + "</h4>";
 			markerContent += "<p><i>" + dayOfWeekAsString(val.weekday_tinyint) 
 			markerContent += "&nbsp;" + val.start_time.substring(0, 5) + "</i>&nbsp;&nbsp;";
 			markerContent += val.location_text + "&nbsp;" + val.location_street + "<br>";
@@ -294,13 +294,13 @@ function runSearch() {
 			markerContent +='">Directions</a></li>';			
 
 			switch (val.weekday_tinyint) {
-				case "1": sunExpandLi = sunExpandLi + markerContent; break;
-				case "2": monExpandLi = monExpandLi + markerContent; break;
-				case "3": tueExpandLi = tueExpandLi + markerContent; break;
-				case "4": wedExpandLi = wedExpandLi + markerContent; break;
-				case "5": thuExpandLi = thuExpandLi + markerContent; break;
-				case "6": friExpandLi = friExpandLi + markerContent; break;
-				case "7": satExpandLi = satExpandLi + markerContent; break;
+				case "1": sunCount++; sunExpandLi = sunExpandLi + markerContent; break;
+				case "2": monCount++; monExpandLi = monExpandLi + markerContent; break;
+				case "3": tueCount++; tueExpandLi = tueExpandLi + markerContent; break;
+				case "4": wedCount++; wedExpandLi = wedExpandLi + markerContent; break;
+				case "5": thuCount++; thuExpandLi = thuExpandLi + markerContent; break;
+				case "6": friCount++; friExpandLi = friExpandLi + markerContent; break;
+				case "7": satCount++; satExpandLi = satExpandLi + markerContent; break;
 			}
 				
 			// Add markers to the markerClusterer Layer
@@ -324,6 +324,14 @@ function runSearch() {
 		$("#list-results").append(thuExpandLi);
 		$("#list-results").append(friExpandLi);
 		$("#list-results").append(satExpandLi);
+		
+		$("#sunHead").text("Sunday (" + sunCount + " meetings)");
+		$("#monHead").text("Monday (" + monCount + " meetings)");
+		$("#tueHead").text("Tuesday (" + tueCount + " meetings)");
+		$("#wedHead").text("Wednesday (" + wedCount + " meetings)");
+		$("#thuHead").text("Thursday (" + thuCount + " meetings)");
+		$("#friHead").text("Friday (" + friCount + " meetings)");
+		$("#satHead").text("Satday (" + satCount + " meetings)");
 				
 		map.addLayer(markerClusterer);	
 		var div = $('#list-results');
