@@ -43,7 +43,7 @@
 
 <!-- Start of search-map page -->
 <div data-role="page" id="search-map" >
-	<div data-role="header" id="map-header" data-add-back-btn="true">
+	<div data-role="header" id="map-header" data-add-back-btn="true" data-position="fixed">
 		<h1>Search Results</h1>
 	</div><!-- /header -->
 	<div role="main" class="ui-content" style="padding: 0px !important">
@@ -67,7 +67,7 @@
 
 <!-- Start of settings page -->
 <div data-role="page" id="settings" >
-	<div data-role="header" data-add-back-btn="true">
+	<div data-role="header" data-add-back-btn="true" data-position="fixed">
 		<h1>Settings</h1>
 	</div><!-- /header -->
 	<div role="main" class="ui-content">
@@ -86,11 +86,66 @@
 
 <!-- Start of Contact page -->
 <div data-role="page" id="contact" >
-	<div data-role="header" data-add-back-btn="true">
+	<div data-role="header" data-add-back-btn="true" data-position="fixed">
 		<h1>Contact Us</h1>
 	</div><!-- /header -->
 	<div role="main" class="ui-content">		
-		<h1> Put the many many ways to contact us here</h1>
+		<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' >
+			<h4 id='sunHead'>Websites</h4>
+			<li style='list-style-type: none !important'><h4>Regional Website</h4><p><a href='http://www.na-ireland.org'>http://www.na-ireland.org</a></li>
+			<li style='list-style-type: none !important'><h4>Southern Area</h4><p><a href='http://www.nasouth.ie/wp/'>http://www.nasouth.ie</a></li>
+			<li style='list-style-type: none !important'><h4>Eastern Area</h4><p><a href='http://www.nairleast.org'>http://www.nairleast.org</a></li>
+			<li style='list-style-type: none !important'><h4>Northern Area</h4><p><a href='http://www.nanorthernireland.com'>http://www.nanorthernireland.com</a></li>
+		</ul>
+		<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' >
+			<h4 id='sunHead'>Email Addresses</h4>
+				<li style='list-style-type: none !important'>
+					<a href="mailto:info@na-ireland.org">Regional Contact</a>
+				</li>
+				<li style='list-style-type: none !important'>
+					<a href="mailto:info@nairleast.org">Eastern Area</a>
+				</li>
+				<li style='list-style-type: none !important'>
+					<a href="mailto:info@nasouth.ie">Southern Area</a>
+				</li>
+				<li style='list-style-type: none !important'>
+					<a href="mailto:contact@nanorthernireland.com">Northern Area</a>
+				</li>
+		</ul>
+		<ul style='padding: 0px !important'><div data-role='collapsible' data-autodividers='true' >
+			<h4 id='sunHead'>Area Phone Lines</h4>
+				<li style='list-style-type: none !important'>
+					<h4>Regional Info Line</h4>
+					<p style="font-family:verdana;font-size:14px;">Information line only</p>
+					<p style="font-family:verdana;font-size:14px;"><a href="tel:+353016728000">Tel: +353 (0)1-6728 000</a></p>
+				</li>
+				<li style='list-style-type: none !important'>
+					<h4>Eastern Area</h4>  
+					<p style="font-family:verdana;font-size:14px;"><a href="tel:+3530868629308">Tel: +353 (0) 86-8629 308</a></p>
+				</li>
+				<li style='list-style-type: none !important'>
+					<h4>Southern Area</h4> 
+					<p style="font-family:verdana;font-size:14px;">Every evening from 6-9pm</p>
+					<p style="font-family:verdana;font-size:14px;"><a href="tel:+3530871386120">Tel: +353 (0) 87-1386 120</a></p>					
+				</li>
+				<li style='list-style-type: none !important'>
+					<h4>Western Area<?h4> 
+					<p style="font-family:verdana;font-size:14px;"><a href="tel:+3530868149004">Tel: +353 (0) 86-8149 004</a></p>															
+				</li>
+				<li style='list-style-type: none !important'>
+					<h4>Northern Area</h4>  
+					<p style="font-family:verdana;font-size:14px;">Every evening from 7-10pm</p>
+					<p style="font-family:verdana;font-size:14px;"><a href="tel:+447810172991">Tel: +44 781-0172991</a></p>										
+					<p style="font-family:verdana;font-size:14px;">In Donegal, you can call <a href="tel:+3530860668377">+353 (0) 86-066 8377</a></p>			
+				</li>
+		</ul>
+			
+			
+			
+			
+		</ul>
+		
+
 	</div><!-- /content -->
 </div><!-- /settings -->
 
@@ -102,6 +157,8 @@
   <p>Location has been updated</p>
  </div>
 </div>
+
+
 
 
 </body>
