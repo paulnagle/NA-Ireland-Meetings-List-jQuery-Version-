@@ -65,7 +65,7 @@ function deleteMap() {
 
 	var headerHeight = document.getElementById('map-header').clientHeight;
 	var footerHeight = document.getElementById('map-footer').clientHeight;
-	var newHeight = window.innerHeight - (headerHeight + footerHeight) ;
+	var newHeight = window.innerHeight - (headerHeight + footerHeight + 4) ;
 	document.getElementById("map_canvas").style.height = newHeight + "px";	
 	
 	var $mapSwitch = $( "#map-switch" ),
@@ -92,7 +92,7 @@ function newMap() {
 	
 	var headerHeight = document.getElementById('map-header').clientHeight;
 	var footerHeight = document.getElementById('map-footer').clientHeight;
-	var newHeight = window.innerHeight - (headerHeight + footerHeight) ;
+	var newHeight = window.innerHeight - (headerHeight + footerHeight + 4) ;
 	document.getElementById("map_canvas").style.height = newHeight + "px";	
 
 	console.log("*==Creating Map");
@@ -253,13 +253,15 @@ function buildSearchURL () {
 	search_url += "&lat_val=" + myLatLng.lat;
 	search_url += "&sort_key=sort_results_by_distance";
 	search_url += "&data_field_key=meeting_name,weekday_tinyint,start_time,location_text,location_street,location_info,distance_in_km,latitude,longitude";	
+//	search_url += "?callback=?";	// jsonp
+	console.log("Search URL = "+ search_url);
 }
 
 // This function runs the query to the BMLT and displays the results on the map
 function runSearch() {
 	console.log("****Running runSearch()****");		
 	buildSearchURL();
-		
+	
 	$.getJSON(search_url, function( data) {	
 		if (markerClusterer) {
 			map.removeLayer(markerClusterer);
@@ -331,7 +333,7 @@ function runSearch() {
 		$("#wedHead").text("Wednesday (" + wedCount + " meetings)");
 		$("#thuHead").text("Thursday (" + thuCount + " meetings)");
 		$("#friHead").text("Friday (" + friCount + " meetings)");
-		$("#satHead").text("Satday (" + satCount + " meetings)");
+		$("#satHead").text("Saturday (" + satCount + " meetings)");
 				
 		map.addLayer(markerClusterer);	
 		var div = $('#list-results');
