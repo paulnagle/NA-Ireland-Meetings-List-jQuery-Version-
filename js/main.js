@@ -166,6 +166,16 @@ $(document).on("pagecreate", "#search-map", function() {
 	});	
 });
 
+// Load the spinner if an ajaxStart occurs; stop when it is finished
+$(document).on({
+  ajaxStart: function() { 
+    $.mobile.loading('show');
+  },
+  ajaxStop: function() {
+    $.mobile.loading('hide');
+  }    
+});
+
 // This function converts a number to a day of the week	
 function dayOfWeekAsString(dayIndex) {
 	return ["not a day?", "Sun", "Mon","Tue","Wed","Thu","Fri","Sat"][dayIndex];
