@@ -176,6 +176,11 @@ $(document).on({
   }    
 });
 
+$( document ).on( "mobileinit", function() {
+	$.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
+});
+
 // This function converts a number to a day of the week	
 function dayOfWeekAsString(dayIndex) {
 	return ["not a day?", "Sun", "Mon","Tue","Wed","Thu","Fri","Sat"][dayIndex];
@@ -295,7 +300,6 @@ function runSearch() {
 			markerContent += "&nbsp;" + val.start_time.substring(0, 5) + "</i>&nbsp;&nbsp;";
 			markerContent += val.location_text + "&nbsp;" + val.location_street + "<br>";
 			markerContent += "<i>" + val.location_info + "</i></p>";
-//			markerContent += "<div class='ui-li-count'><span>" + val.distance_in_km + " kms</span></div>";
 			
 			fromHere = "'" + myLatLng.lat + ',' + myLatLng.lng + "'";
 			toHere   = "'" + val.latitude + ',' + val.longitude + "'";

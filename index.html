@@ -54,12 +54,12 @@
 		</div>
 	</div><!-- /content -->
 	<div data-role="footer" id="map-footer" data-position="fixed">
-		<div class="segmented-control ui-bar-d"  style="text-align:center;">
-            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+		<div class="segmented-control ui-bar-d"  style="text-align:center;"> 
+            <fieldset data-role="controlgroup" data-type="horizontal" >
                 <input name="switch" id="map-switch" type="radio" checked="true" >
-                <label for="map-switch">Map</label>			
+                <label for="map-switch" style="width: 100px;text-align:center;">Map   </label>			
                 <input name="switch" id="list-switch" type="radio">
-                <label for="list-switch">List</label>
+                <label for="list-switch" style="width: 100px;text-align:center;">List  </label>
             </fieldset>
 		</div>
 	</div><!-- /footer -->	
@@ -72,13 +72,13 @@
 	</div><!-- /header -->
 	<div role="main" class="ui-content">
 		<input type="button" id="GPSButton" value="Reset to current location">
-		
+		<hr style=" border: none; background-color: #bbb; color: #bbb; height: 1px;">
 		<label for="textinput-s">Move search center:</label>
-		<div data-role="controlgroup" data-type="horizontal">
-			<input name="textinput-s" id="textinput-s" placeholder="Enter address here" value="" data-mini="true" data-wrapper-class="controlgroup-textinput ui-btn" type="search">
-		    <button name="geoLocateBtn" data-wrapper-class="controlgroup-textinput ui-btn" id="geoLocateBtn">Update</button>
+		<div >
+			<input name="textinput-s" id="textinput-s" placeholder="Enter address here" value="" type="search">
+		    <button name="geoLocateBtn" id="geoLocateBtn" >Update</button>
 		</div>
-		
+		<hr style=" border: none; background-color: #bbb; color: #bbb; height: 1px;">
 		<label for="slider-s">Search radius in kms:</label>
 		<input type="range" name="slider-s" id="slider-s" value="25" min="1" max="150" data-highlight="true">
 	</div><!-- /content -->
