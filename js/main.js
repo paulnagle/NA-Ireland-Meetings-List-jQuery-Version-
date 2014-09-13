@@ -5,6 +5,7 @@ var circle = null;
 var currentLocationMarker = null;
 var searchRadius = 25;  // default to 25km
 var markerClusterer = null; 
+var firstLoad = 1;
 
 
 // Extend the Default marker class
@@ -143,9 +144,17 @@ $( document ).on( "pagecontainershow", function ( event, ui ) {
 	if (pageId == "search-map") {
 		console.log("*==pageId = search-map");
 		map.invalidateSize(false);
+		if (firstLoad == 1) {
+			$.mobile.changePage('#geoDialog');
+			firstLoad = 0;
+			$( "#initialGPSButton" ).bind( "click", function(event, ui) {
+				getCurrentGPSLocation();
+			});
+		}
 		fillMap();
 	}
 });
+
 
 $(document).on("pagecreate","#settings", function() {
 	$("#slider-s" ).on( 'change', function( event ) {
@@ -181,6 +190,16 @@ $( document ).on( "mobileinit", function() {
     $.mobile.allowCrossDomainPages = true;
 });
 
+
+
+
+
+
+
+
+
+
+
 // This function converts a number to a day of the week	
 function dayOfWeekAsString(dayIndex) {
 	return ["not a day?", "Sun", "Mon","Tue","Wed","Thu","Fri","Sat"][dayIndex];
@@ -207,18 +226,21 @@ function spinMap(spinFlag) {
 // is found OK, the newMap() function is called with the location.
 function getCurrentGPSLocation() {
     console.log("****getCurrentGPSLocation()****");
-	navigator.geolocation.getCurrentPosition(setLocation, noLocation);
-	
-	function setLocation(location) {
-	    console.log("****GPS location found");
-		myLatLng = L.latLng(location.coords.latitude, location.coords.longitude);
-//		fillMap();
-//		$.mobile.changePage('#dialog', {'role': 'dialog'});
-
-	}
-	
-	function noLocation() {
-	    console.log("****GPS location NOT found");	
+	if ( navigator.geolocation ) {
+        function success(location) {
+			console.log("****GPS location found");
+			myLatLng = L.latLng(location.coords.latitude, location.coords.longitude);
+			$.mobile.changePage('#yesgeoDialog');
+        }
+        function fail(error) {
+            console.log("****GPS location NOT found");  // Failed to find location, show default map
+			$.mobile.changePage('#nogeoDialog');
+        }
+        // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
+        navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
+	} else {
+		console.log("****GPS location not available");
+		$.mobile.changePage('#nogeoDialog');
 	}
 }
 
@@ -358,5 +380,5 @@ function runSearch() {
 $( document ).ready(function() {
     console.log( "ready!" );
 	newMap();	
-	getCurrentGPSLocation();
+//	getCurrentGPSLocation();
 });

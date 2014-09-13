@@ -155,11 +155,52 @@
  </div>
  <div data-role="content">
   <p>Location has been updated</p>
+    <a href="#" data-role="button" data-rel="back" >OK</a> 
  </div>
 </div>
 
 
+<div data-role="dialog" id="geoDialog" data-transition="flip">
+ <div data-role="header" data-theme="a">
+  <h1>Geolocation</h1>
+ </div>
+ <div data-role="content">
+  <p>Would you like to use your current location?</p>
+  			<a href="#" data-role="button" id="initialGPSButton" data-rel="back" >Sounds good</a>       
+			<a href="#" data-role="button" data-rel="back" >No thanks</a> 
+ </div>
+</div>
 
+<div data-role="dialog" id="yesgeoDialog" data-transition="flip">
+ <div data-role="header" data-theme="a">
+  <h1>Location updated</h1>
+ </div>
+ <div data-role="content">
+  <p>We updated the map to your current location.</p>
+  <a href="#" data-role="button" data-rel="back">OK</a> 
+ </div>
+</div>
+
+
+<div data-role="dialog" id="nogeoDialog" data-transition="flip">
+ <div data-role="header" data-theme="a">
+  <h1>Location not found</h1>
+ </div>
+ <div data-role="content">
+  <p>We couldnt find your current location.</p>
+  <a href="#" data-role="button" data-rel="back" >OK</a> 
+ </div>
+</div>
+
+<div data-role="dialog" id="searchTimeout" data-transition="flip">
+ <div data-role="header" data-theme="a">
+  <h1>Search timed out</h1>
+ </div>
+ <div data-role="content">
+  <p>The search timed out. This app relies on your internet connection. Press OK to try again</p>
+  <a href="#" data-role="button" data-rel="back" >OK</a> 
+ </div>
+</div>
 
 </body>
 
